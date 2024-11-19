@@ -1,22 +1,20 @@
 #### SETUP ####
 ## Load Packages ##
-# uncomment next lines to install packages for the first time
+# uncomment next line to install packages for the first time
 # install.packages("tidyverse")
-# install.packages("here")
 
 # pull installed packages into your local library for use
 library(tidyverse)
-library(here)
 
 ## Define Working Directory ##
 # save the location of your R project as the working directory
-wd <- here()
+wd <- getwd()
 wd
 
 #### LOAD DATA ####
 # read in the test data from a .csv file located within the "data" folder
 # of your working directory, assign column types to the data columns
-test_data <- read_csv(here(wd, "data", "test_data.csv"),
+test_data <- read_csv(paste0(wd, "/", "data/test_data.csv"),
                       col_types = "cn")
 
 # view the first 3 rows of the data
@@ -32,7 +30,7 @@ spec(test_data)
 test_output <- test_data %>% mutate(HalfCount = Count/2)
 
 # save the new object as a file in the "output" folder
-write_csv(test_output, here(wd, "output", "test_output.csv"))
+write_csv(test_output, paste0(wd, "/", "output/test_output.csv"))
 
 # view the help file of the write_csv function
 ?write_csv
